@@ -1,0 +1,32 @@
+.DATA
+	A: .WORD 1
+	B: .WORD 17
+	C: .WORD 17
+	D: .WORD 0
+	E: .WORD 0
+	
+.TEXT
+	LDR R0,=A
+	LDR R1,=B
+	LDR R5,=C
+	LDR R2,[R0]
+	LDR R3,[R1]
+	LDR R6,[R5]
+	CMP R2,R3
+	BEQ L1 
+	CMP R6,R3
+	BEQ L2 
+	B L3 
+	
+
+	L1: ADD R4,R2,R3
+		STR R4,[R5]
+		SWI 0X011
+	L2: LDR R7,=D
+		SUB R4,R2,R3
+		STR R4,[R7]
+		SWI 0X011
+	L3: LDR R7,=E
+		MUL R4,R2,R3
+		STR R4,[R7]
+		SWI 0X011
